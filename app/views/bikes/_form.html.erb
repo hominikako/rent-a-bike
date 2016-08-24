@@ -1,0 +1,41 @@
+<%= form_for(@bike) do |f| %>
+  <% if @bike.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bike.errors.count, "error") %> prohibited this bike from being saved:</h2>
+
+      <ul>
+      <% @bike.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.number_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :available %><br>
+    <%= f.check_box :available %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :colour %><br>
+    <%= f.text_field :colour %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br>
+    <%= f.text_field :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.text_field :image %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

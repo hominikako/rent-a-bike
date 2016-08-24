@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :bikes
   root 'home#home'
 
   get 'about' => 'home#about'
