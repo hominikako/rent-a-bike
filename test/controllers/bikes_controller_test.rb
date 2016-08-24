@@ -18,7 +18,7 @@ class BikesControllerTest < ActionController::TestCase
 
   test "should create bike" do
     assert_difference('Bike.count') do
-      post :create, bike: { available: @bike.available, colour: @bike.colour, comment: @bike.comment, image: @bike.image, status: @bike.status, type: @bike.type }
+      post :create, bike: { available: @bike.available, category: @bike.category, colour: @bike.colour, comment: @bike.comment, image: @bike.image, name: @bike.name, status: @bike.status }
     end
 
     assert_redirected_to bike_path(assigns(:bike))
@@ -35,7 +35,7 @@ class BikesControllerTest < ActionController::TestCase
   end
 
   test "should update bike" do
-    patch :update, id: @bike, bike: { available: @bike.available, colour: @bike.colour, comment: @bike.comment, image: @bike.image, status: @bike.status, type: @bike.type }
+    patch :update, id: @bike, bike: { available: @bike.available, category: @bike.category, colour: @bike.colour, comment: @bike.comment, image: @bike.image, name: @bike.name, status: @bike.status }
     assert_redirected_to bike_path(assigns(:bike))
   end
 

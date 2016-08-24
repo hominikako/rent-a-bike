@@ -5,7 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Type</th>
+      <th>Name</th>
+      <th>Category</th>
       <th>Available</th>
       <th>Status</th>
       <th>Colour</th>
@@ -18,7 +19,8 @@
   <tbody>
     <% @bikes.each do |bike| %>
       <tr>
-        <td><%= bike.type %></td>
+        <td><%= bike.name %></td>
+        <td><%= bike.category %></td>
         <td><%= bike.available %></td>
         <td><%= bike.status %></td>
         <td><%= bike.colour %></td>

@@ -69,6 +69,6 @@ class BikesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bike_params
-      params.require(:bike).permit(:type, :available, :status, :colour, :comment, :image)
+      params.require(:bike).permit(:name, :category, :available, :status, :colour, :comment, :image)
     end
 end
