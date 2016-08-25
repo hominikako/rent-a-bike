@@ -7,22 +7,39 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-
-    <%= link_to "Home", root_path %> 
-    <%= link_to "About", about_path %>
-    <%= link_to "Contact", contact_path %>
-        
-    <% if user_signed_in? %>
-        <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-    <% else %>
-        <%= link_to "Sign in", new_user_session_path %> 
-        <%= link_to "Sign up", new_user_registration_path %>
-    <% end %>
     
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-<%= yield %>
+    <div id="main-container" class="container">
+		    <div class="nav navbar-inverse" id="navbar-collapse-1">
+		        <div class="container-fluid">
+    		        <div class="navbar-header">
+                      <a class="navbar-brand" href="#">Rent-a-Bike Dublin</a>
+                    </div>
+    		        <ul class="nav navbar-nav">
+    			        <li  class="<%= 'active' if params[:action] == 'home' %>"> <%= link_to "Home", root_path %> </li>
+    			        <li  class="<%= 'active' if params[:action] == 'bikes' %>"><%= link_to "Bikes", bikes_path %></li>
+                        <li  class="<%= 'active' if params[:action] == 'about' %>"><%= link_to "About", about_path %></li>
+                        <li  class="<%= 'active' if params[:action] == 'contact' %>"><%= link_to "Contact", contact_path %></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <% if user_signed_in? %>
+                                <li> <%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+                        <% else %>
+                                <li> <%= link_to "Sign in", new_user_session_path, class: "glyphicon glyphicon-user" %> </li>
+                                <li><%= link_to "Sign up", new_user_registration_path, class: "glyphicon glyphicon-log-in" %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1"></div>
+                <div class="col-xs-10">
+                    <p class="notice"><%= notice %></p>
+                    <p class="alert"><%= alert %></p>
+                    <%= yield %>
+                </div>
+                <div class="col-xs-1"></div>
+            </div>
+    </div>
 
 </body>
 </html>
