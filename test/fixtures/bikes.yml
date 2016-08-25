@@ -2,18 +2,14 @@
 
 one:
   name: MyString
+  description: MyText
+  price: 1.5
   category: 1
-  available: false
   status: 1
-  colour: MyString
-  comment: MyString
-  image: MyString
 
 two:
   name: MyString
+  description: MyText
+  price: 1.5
   category: 1
-  available: false
   status: 1
-  colour: MyString
-  comment: MyString
-  image: MyString

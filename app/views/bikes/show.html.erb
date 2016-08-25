@@ -6,33 +6,23 @@
 </p>
 
 <p>
+  <strong>Description:</strong>
+  <%= @bike.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @bike.price %>
+</p>
+
+<p>
   <strong>Category:</strong>
   <%= @bike.category %>
 </p>
 
 <p>
-  <strong>Available:</strong>
-  <%= @bike.available %>
-</p>
-
-<p>
   <strong>Status:</strong>
   <%= @bike.status %>
-</p>
-
-<p>
-  <strong>Colour:</strong>
-  <%= @bike.colour %>
-</p>
-
-<p>
-  <strong>Comment:</strong>
-  <%= @bike.comment %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @bike.image %>
 </p>
 
 <%= link_to 'Edit', edit_bike_path(@bike) %> |
