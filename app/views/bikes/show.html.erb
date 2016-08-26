@@ -25,4 +25,14 @@
   <%= @bike.status_sym %>
 </p>
 
+
+<%= form_for(@rental) do |f| %>
+  <%= hidden_field(:rental, :bike_id, :value => @bike.id)%>
+  <%= hidden_field(:rental, :user_id, :value => current_user.id)%>
+  <%= f.label :days %>
+  <%= number_field_tag 'rental[days]'%>
+
+  <%= f.button %>
+<% end %>
+
 <%= link_to 'Back', bikes_path %>

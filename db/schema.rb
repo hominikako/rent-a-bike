@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826151440) do
+ActiveRecord::Schema.define(version: 20160826192400) do
 
   create_table "bikes", force: :cascade do |t|
     t.string   "name"
@@ -22,6 +22,19 @@ ActiveRecord::Schema.define(version: 20160826151440) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "rentals", force: :cascade do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.float    "price"
+    t.integer  "user_id"
+    t.integer  "bike_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "rentals", ["bike_id"], name: "index_rentals_on_bike_id"
+  add_index "rentals", ["user_id"], name: "index_rentals_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -7,7 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-    
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+    <% end -%>
     <div id="main-container" class="container">
 		    <div class="nav navbar-inverse" id="navbar-collapse-1">
 		        <div class="container-fluid">
@@ -29,6 +31,13 @@
                                 <li><%= link_to "Sign up", new_user_registration_path, class: "glyphicon glyphicon-user" %></li>
                         <% end %>
                     </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <% flash.each do |name, msg| -%>
+                        <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+                    <% end -%>
                 </div>
             </div>
             <div class="row">

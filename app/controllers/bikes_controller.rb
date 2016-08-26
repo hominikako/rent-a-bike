@@ -11,6 +11,7 @@ class BikesController < ApplicationController
   # GET /bikes/1
   # GET /bikes/1.json
   def show
+    @rental = Rental.new
   end
 
   # GET /bikes/new

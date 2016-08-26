@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'contact' => 'home#contact'
   
   resources :bikes
-  
+  resources :rentals
   # Use my custom registration controller 
   devise_for :users, :controllers => { registrations: 'registrations' }
   

@@ -46,6 +46,28 @@
   </div>
 <% end %>
 
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Bike id</th>
+      <th>start date</th>
+      <th>end date</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @rentals.each do |r| %>
+      <tr>
+        <td><%= r.bike.name %></td>
+        <td><%= r.start_date %></td>
+        <td><%= r.end_date %></td>
+        <td><%= r.price %></td>
+      </tr>
+   <% end %>
+ </tbody>
+</table>
+
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>

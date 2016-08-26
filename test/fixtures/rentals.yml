@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_date: 2016-08-26
+  end_date: 2016-08-26
+  price: 1.5
+  user_id: 
+  bike_id: 
+
+two:
+  start_date: 2016-08-26
+  end_date: 2016-08-26
+  price: 1.5
+  user_id: 
+  bike_id: 
