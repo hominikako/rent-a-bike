@@ -27,10 +27,14 @@
     <%= f.label :category %><br>
     <%= f.number_field :category %>
   </div>
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.number_field :status %>
-  </div>
+ <% if is_admin? %>
+     <div class="field">
+      <%= f.label :status %><br>
+      <!--< % = f.number_field :status %>-->
+      <%= f.select :status, [['Available',0], ['Reparing',1] ]%>
+    </div>
+<% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
