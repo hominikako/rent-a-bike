@@ -23,11 +23,12 @@
     <%= f.label :price %><br>
     <%= f.text_field :price %>
   </div>
+ <% if is_admin? %>
+
   <div class="field">
     <%= f.label :category %><br>
-    <%= f.number_field :category %>
+     <%= f.select :category, [['Mountain Bike',0], ['Hybrid Bike',1], ['BMX Bike',2] , ['Tandem Bike',3]  ]%>
   </div>
- <% if is_admin? %>
      <div class="field">
       <%= f.label :status %><br>
       <!--< % = f.number_field :status %>-->

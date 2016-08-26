@@ -1,7 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def edit
-    byebug
+      @rentals = current_user.rentals
+      super
+  end
+  
+  def update
       @rentals = current_user.rentals
       super
   end
