@@ -1,3 +1,4 @@
+
 class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
@@ -5,7 +6,21 @@ class BikesController < ApplicationController
   # GET /bikes
   # GET /bikes.json
   def index
-    @bikes = Bike.all
+    
+      if  (user_signed_in? and current_user.role == 1)
+        @bikes = Bike.all
+      else
+          @bikes = Bike.where(status:0).reject {|b| b.rentals.where('end_date > ?', Date.today.to_date).size > 0 } 
+        # Bike.where(status:0).each do |b|
+          # b.rentals.each do |r|
+          #     @bikes.delete(b) if r.end_date > Date.today.to_date
+          # end
+          # byebug
+        # @bikes.delete(b) if b.rentals.where('end_date > ?', Date.today.to_date) 
+          # @bikes.delete_if { |b| b.rentals.where('end_date > ?', Date.today.to_date) }
+        # end
+      end
+
   end
 
   # GET /bikes/1
