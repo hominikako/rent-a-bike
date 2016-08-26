@@ -22,14 +22,26 @@
         <td><%= bike.price %></td>
         <td><%= bike.category %></td>
         <td><%= bike.status %></td>
-        <td><%= link_to 'Show', bike, class: 'btn btn-info' %></td>
-        <td><%= link_to 'Edit', edit_bike_path(bike),class: 'btn btn-info' %></td>
-        <td><%= link_to 'Destroy', bike, method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-warning' %></td>
+       
+        <% if ( user_signed_in? and current_user.role == 1 )%>
+         <!-- Only administrators can delete/create/update bikes-->
+          <td><%= link_to 'Show', bike, class: 'btn btn-info' %></td>
+          <td><%= link_to 'Edit', edit_bike_path(bike),class: 'btn btn-info' %></td>
+          <td><%= link_to 'Destroy', bike, method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-warning' %></td>
+        <% elsif (user_signed_in? and current_user.role == 0) %>
+          <!-- A logged in user can see the bikes specifications-->
+          <td><%= link_to 'Show', bike, class: 'btn btn-info' %></td>
+        <% else %>
+          <!-- If no loged_in, there are no actions to do-->
+          <td></td>
+         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Bike', new_bike_path,class: 'btn btn-primary' %>
+  <!-- Only administrators can delete/create/update bikes-->
+<% if ( user_signed_in? and current_user.role == 1 )%>
+  <%= link_to 'New Bike', new_bike_path,class: 'btn btn-primary' %>
+<% end %>
