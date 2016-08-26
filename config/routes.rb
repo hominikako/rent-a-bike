@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
   
-  
-  resources :bikes
-  devise_for :users
   root 'home#home'
 
   get 'about' => 'home#about'
   get 'contact' => 'home#contact'
+  
+  resources :bikes
+  
+  # Use my custom registration controller 
+  devise_for :users, :controllers => { registrations: 'registrations' }
+  
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
