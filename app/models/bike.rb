@@ -3,6 +3,14 @@ class Bike < ActiveRecord::Base
     has_many :rentals
     has_many :users, through: :rentals
   
+    validates :name, presence: true
+    validates :category, presence: true
+    validates :price, presence: true
+    validates :status, presence: true
+    
+    before_save :validate
+    validates_numericality_of :price, :greater_than => 0
+    
     # Type of status for a bike
     def self.what_status_is
         [:Available, :Reparing]
@@ -22,4 +30,5 @@ class Bike < ActiveRecord::Base
         return nil if status.nil?
         Bike.what_category_is[category]
     end
+    
 end

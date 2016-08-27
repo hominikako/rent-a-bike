@@ -1,45 +1,51 @@
-<h1>Listing Bikes</h1>
+<div class="page-header">
+  <h1>Our  bikes</h1>
+</div>
+<div class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Listing of bikes</div>
+  <div class="panel-body">
+    <table class="table  table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Status</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @bikes.each do |bike| %>
+          <tr>
+            <td><%= bike.name %></td>
+            <td><%= bike.description %></td>
+            <td><%= bike.price %></td>
+            <td><%= bike.category_str %></td>
+            <td><%= bike.status_sym %></td>
+           
+            <% if ( is_admin? )%>
+             <!-- Only administrators can delete/create/update bikes-->
+              <td><%= link_to 'Book/Info', bike, class: 'btn btn-success' %></td>
+              <td><%= link_to 'Edit', edit_bike_path(bike),class: 'btn btn-info' %></td>
+              <td><%= link_to 'Destroy', bike, method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-warning' %></td>
+            <% elsif (user_signed_in? and current_user.role == 0) %>
+              <!-- A logged in user can see the bikes specifications-->
+              <td><%= link_to 'Book', bike, class: 'btn btn-success' %></td>
+            <% else %>
+              <!-- If no loged_in, there are no actions to do-->
+              <td></td>
+             <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<table class="table  table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Category</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bikes.each do |bike| %>
-      <tr>
-        <td><%= bike.name %></td>
-        <td><%= bike.description %></td>
-        <td><%= bike.price %></td>
-        <td><%= bike.category_str %></td>
-        <td><%= bike.status_sym %></td>
-       
-        <% if ( is_admin? )%>
-         <!-- Only administrators can delete/create/update bikes-->
-          <td><%= link_to 'Book', bike, class: 'btn btn-info' %></td>
-          <td><%= link_to 'Edit', edit_bike_path(bike),class: 'btn btn-info' %></td>
-          <td><%= link_to 'Destroy', bike, method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-warning' %></td>
-        <% elsif (user_signed_in? and current_user.role == 0) %>
-          <!-- A logged in user can see the bikes specifications-->
-          <td><%= link_to 'Book', bike, class: 'btn btn-info' %></td>
-        <% else %>
-          <!-- If no loged_in, there are no actions to do-->
-          <td></td>
-         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-  <!-- Only administrators can delete/create/update bikes-->
 <% if is_admin? %>
+<div class="panel-footer">
+  <!-- Only administrators can delete/create/update bikes-->
   <%= link_to 'Add Bike', new_bike_path,class: 'btn btn-primary' %>
-<% end %>
+ </div>
+ <% end %>

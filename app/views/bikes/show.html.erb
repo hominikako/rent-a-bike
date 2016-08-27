@@ -1,32 +1,43 @@
-<p>
-  <strong>Name:</strong>
-  <%= @bike.name %>
-</p>
+<div class="page-header">
+  <h1>Bike</h1>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @bike.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @bike.price %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @bike.category_str %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @bike.status_sym %>
-</p>
+<div class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Details</div>
+    <div class="panel-body">
+    
+    <p>
+      <strong>Name:</strong>
+      <%= @bike.name %>
+    </p>
+    
+    <p>
+      <strong>Description:</strong>
+      <%= @bike.description %>
+    </p>
+    
+    <p>
+      <strong>Price per day:</strong>
+      <%= @bike.price %> €
+    </p>
+    
+    <p>
+      <strong>Category:</strong>
+      <%= @bike.category_str %>
+    </p>
+    
+    <p>
+      <strong>Status:</strong>
+      <%= @bike.status_sym %>
+    </p>
+    </div>
+  </div>
 
 <hr/>
 <h1>Book this bike</h1>
-<div class="row">
- 
+<div class="panel panel-primary">
+     <div class="panel-body">
       <!--This form is be used to create a booking for a bike-->
       <%= form_for(@rental) do |f| %>
             <%= hidden_field(:rental, :bike_id, :value => @bike.id)%>
@@ -47,13 +58,12 @@
            </div>
       <% end %>
   </div>
-</div>
-<div class="row">
-<div class="col-xs-12">
-  <%= link_to 'Back', bikes_path , :class=>'btn btn-link' %>
-</div>
-</div>
+  </div>
 
+<div class="panel-footer">
+   <%= link_to 'Back to the list', bikes_path%>
+</div>
+</div>
 
 <script type="text/javascript">
 
