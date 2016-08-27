@@ -1,4 +1,20 @@
 class RentalsController < ApplicationController
+    before_action :set_rental, only: [:show, :edit, :update, :destroy]
+    before_action :allow_if_admin
+    
+    
+    def index
+        @rentals = Rental.all
+    end
+    
+    def destroy
+    @rental.destroy
+    respond_to do |format|
+      flash[:success] = 'Booking was successfully deleted.'
+      format.html { redirect_to rentals_url }
+      format.json { head :no_content }
+    end
+    end
     
     def create
         # byebug
@@ -36,6 +52,13 @@ class RentalsController < ApplicationController
         end
     end
     
+  private
+  
+    
+    # Use callbacks to share common setup or constraints between actions.
+    def set_rental
+      @rental = Rental.find(params[:id])
+    end
       # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
       params.require(:rental).permit(:user_id, :bike_id, :start_date, :end_date)

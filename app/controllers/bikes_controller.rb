@@ -9,7 +9,7 @@ class BikesController < ApplicationController
     
     # The admin has access to all the bikes when a logged in user (or not logged in) will just be able to see
     # the bikes which status is == 0 (available)
-      if  (user_signed_in? and current_user.role == 1)
+      if  is_admin?
         @bikes = Bike.all
       else
           @bikes = Bike.where(status:0)

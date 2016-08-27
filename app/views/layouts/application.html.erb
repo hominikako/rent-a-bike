@@ -16,6 +16,9 @@
     		        <ul class="nav navbar-nav">
     			        <li  class="<%= 'active' if params[:action] == 'home' %>"> <%= link_to "Home", root_path %> </li>
     			        <li  class="<%= 'active' if params[:action] == 'bikes' %>"><%= link_to "Bikes", bikes_path %></li>
+                        <% if is_admin? %>
+                            <li  class="<%= 'active' if params[:action] == 'rentals' %>"><%= link_to "Bookings", rentals_path %></li>
+                        <% end %>
                         <li  class="<%= 'active' if params[:action] == 'contact' %>"><%= link_to "Contact", contact_path %></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
