@@ -25,14 +25,75 @@
   <%= @bike.status_sym %>
 </p>
 
+<hr/>
+<h1>Book this bike</h1>
+<div class="row">
+ 
+      <!--This form is be used to create a booking for a bike-->
+      <%= form_for(@rental) do |f| %>
+            <%= hidden_field(:rental, :bike_id, :value => @bike.id)%>
+            <%= hidden_field(:rental, :user_id, :value => current_user.id)%>
+           <div class="col-xs-4">
+            <%= f.label :start_date %>
+            <%= f.text_field :start_date, :value=>Date.today.strftime('%d/%m/%Y'), "data-provide" => 'datepicker' %>
+           </div>
+           <div class="col-xs-4">
+            <%= f.label :end_date %>
+            <%= f.text_field :end_date,  :value=>Date.today.strftime('%d/%m/%Y'), "data-provide" => 'datepicker' %>
+           </div>
+           <div class="col-xs-1">
+            <%= f.label "0€", :id=>'final_price', :text=>"€"%>
+           </div>
+           <div class="col-xs-3">
+            <%= f.button "Book it", class: 'btn btn-success'  %>
+           </div>
+      <% end %>
+  </div>
+</div>
+<div class="row">
+<div class="col-xs-12">
+  <%= link_to 'Back', bikes_path , :class=>'btn btn-link' %>
+</div>
+</div>
 
-<%= form_for(@rental) do |f| %>
-  <%= hidden_field(:rental, :bike_id, :value => @bike.id)%>
-  <%= hidden_field(:rental, :user_id, :value => current_user.id)%>
-  <%= f.label :days %>
-  <%= number_field_tag 'rental[days]'%>
 
-  <%= f.button %>
-<% end %>
+<script type="text/javascript">
 
-<%= link_to 'Back', bikes_path %>
+  // When the page is loaded we set up the price of one day rental
+   var price_per_day = <%= @bike.price%>
+   
+   // Set up start date for the date picker and display final price when date is changed
+   $('#rental_start_date').datepicker({
+       todayBtn: "linked",
+       autoclose: true,
+       todayHighlight: true,
+       format: 'dd/mm/yyyy' 
+   }).change(function(){
+     displayFinalPrice()
+    });;
+      
+    // Set up end date for the date picker and display final price when date is changed
+    $('#rental_end_date').datepicker({
+       todayBtn: "linked",
+       autoclose: true,
+       todayHighlight: true,
+       format: 'dd/mm/yyyy' 
+   }).change(function(){
+     displayFinalPrice()
+    });;
+   
+  //Calculates and displays the final price for the given bike and dates
+   function displayFinalPrice() {
+      var start_date = $("#rental_start_date").datepicker('getDate').getTime()
+      var end_date = $("#rental_end_date").datepicker('getDate').getTime()
+      var operator_days = 24*60*60*1000
+      var diffDays = Math.round(Math.abs((start_date - end_date)/(operator_days)))
+      
+      if (start_date > end_date){
+        $("#final_price").text("No possible to calculate final price")
+      }
+      else{
+        $("#final_price").text(diffDays * price_per_day + "€")
+      }
+    }
+</script>

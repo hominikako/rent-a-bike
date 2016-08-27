@@ -13,5 +13,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-datepicker
 //= require bootstrap-sprockets
 //= require_tree .
+
+   $('#rental_start_date').datepicker({
+       todayBtn: "linked",
+       autoclose: true,
+       todayHighlight: true,
+       format: 'dd/mm/yyyy'
+   });
+   
+  $('#rental_end_date').datepicker({
+       todayBtn: "linked",
+       autoclose: true,
+       todayHighlight: true,
+       format: 'dd/mm/yyyy' 
+   });
