@@ -1,31 +1,35 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1>Listing Rentals</h1>
+</div>
 
-<h1>Listing Rentals</h1>
+<div class="panel panel-primary">
+  <div class="panel-heading">Listing of Rentals</div>
+  <div class="panel-body">
+    <table class="table  table-striped">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Bike</th>
+          <th>Start date</th>
+          <th>End date</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Bike</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Price</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @rentals.each do |rental| %>
-      <tr>
-        <td><%= rental.user.name %></td>
-        <td><%= rental.bike.name %></td>
-        <td><%= rental.start_date.strftime("%d/%m/%Y") %></td>
-        <td><%= rental.end_date.strftime("%d/%m/%Y") %></td>
-        <td><%= rental.price %></td>
-        <td><%= link_to 'Remove', rental, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+      <tbody>
+        <% @rentals.each do |rental| %>
+          <tr class="<%= status_rental_row_class(rental.start_date,rental.end_date) %>">
+            <td><%= rental.user.name %></td>
+            <td><%= rental.bike.name %></td>
+            <td><%= rental.start_date.strftime("%d/%m/%Y") %></td>
+            <td><%= rental.end_date.strftime("%d/%m/%Y") %></td>
+            <td><%= rental.price %></td>
+            <td><%= link_to 'Remove', rental, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
 </table>
-
+</div>
+</div>
 

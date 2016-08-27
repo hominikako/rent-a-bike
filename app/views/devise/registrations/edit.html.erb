@@ -68,7 +68,7 @@
         </thead>
         <tbody>
         <% @rentals.each do |r| %>
-            <tr>
+            <tr class="<%= status_rental_row_class(r.start_date,r.end_date)%>" >
                <td><%= r.bike.name %></td>
               <td><%= r.start_date.strftime("%d/%m/%Y") %></td>
               <td><%= r.end_date.strftime("%d/%m/%Y") %></td>
