@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   
   root 'home#home'
 
-  get 'about' => 'home#about'
   get 'contact' => 'home#contact'
   
   resources :bikes
