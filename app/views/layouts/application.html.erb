@@ -33,17 +33,15 @@
             <!--Display messages from the controllers-->
             <div class="row">
                 <div class="col-xs-12">
-                    <% flash.each do |name, msg| -%>
-                        <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+                    <% flash.each do |name, msg| 
+                        name='success' if name.nil? or name =="notice" -%>
+                        <%= content_tag :div, msg, class: "alert alert-#{name}" %> <br>
                     <% end -%>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-1"></div>
                 <div class="col-xs-10">
-                    <!--Display Devise gem messages-->
-                    <!--<p class="notice">< %= notice %></p>-->
-                    <!--<p class="alert">< %= alert %></p>-->
                     <%= yield %>
                 </div>
                 <div class="col-xs-1"></div>

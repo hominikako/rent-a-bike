@@ -31,6 +31,7 @@ class BikesController < ApplicationController
 
   # GET /bikes/1/edit
   def edit
+    
   end
 
   # POST /bikes
@@ -40,7 +41,8 @@ class BikesController < ApplicationController
 
     respond_to do |format|
       if @bike.save
-        format.html { redirect_to @bike, notice: 'Bike was successfully created.' }
+        flash[:success] = 'Bike was successfully created.'
+        format.html { redirect_to @bike }
         format.json { render :show, status: :created, location: @bike }
       else
         format.html { render :new }
@@ -54,7 +56,8 @@ class BikesController < ApplicationController
   def update
     respond_to do |format|
       if @bike.update(bike_params)
-        format.html { redirect_to @bike, notice: 'Bike was successfully updated.' }
+        flash[:success] = 'Bike was successfully updated.'
+        format.html { render :edit }
         format.json { render :show, status: :ok, location: @bike }
       else
         format.html { render :edit }
@@ -68,7 +71,8 @@ class BikesController < ApplicationController
   def destroy
     @bike.destroy
     respond_to do |format|
-      format.html { redirect_to bikes_url, notice: 'Bike was successfully destroyed.' }
+      flash[:success] = 'Bike was successfully deleted.'
+      format.html { redirect_to bikes_url }
       format.json { head :no_content }
     end
   end

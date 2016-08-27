@@ -14,7 +14,6 @@ class RentalsController < ApplicationController
                 format.html { redirect_to bike_path(:id=>bike.id) }
                 format.json { render json: msg, status: :unprocessable_entity }
             end
-
         else
             hsh[:price] = 0 #in this way we avoid to dont have a valid rental, since price presence is required
             @rental = Rental.new(hsh)
@@ -25,13 +24,13 @@ class RentalsController < ApplicationController
 
             respond_to do |format|
               if @rental.save
-                   flash[:success] = 'Bike has becen rented successfully.'
+                   flash[:success] = ['Bike has becen rented successfully.']
                    format.html { redirect_to bike_path(:id=>bike.id) }
                    format.json { render json: ["Bike has been rented successfully."], status: :unprocessable_entity }
               else
                    flash[:danger] = @rental.errors.full_messages
                    format.html { redirect_to bike_path(:id=>bike.id) }
-                   format.json { render json: @rental.errors.full_messages, status: :unprocessable_entity }
+                   format.json { render json: @rental.errors, status: :unprocessable_entity }
               end
             end
         end
