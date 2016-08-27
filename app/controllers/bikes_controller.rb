@@ -7,14 +7,23 @@ class BikesController < ApplicationController
   # GET /bikes.json
   def index
     
-    # The admin has access to all the bikes when a logged in user (or not logged in) will just be able to see
-    # the bikes which status is == 0 (available)
+    if params[:search]
+      if  is_admin?
+        @bikes = Bike.search(params[:search])
+      else
+        @bikes = Bike.search(params[:search]).reject {|b| b.status != 0 } 
+      end
+      @search_for = params[:search]
+    else
+      # The admin has access to all the bikes when a logged in user (or not logged in) will just be able to see
+      # the bikes which status is == 0 (available)
       if  is_admin?
         @bikes = Bike.all
       else
           @bikes = Bike.where(status:0)
-          # .reject {|b| b.rentals.where('end_date > ?', Date.today.to_date).size > 0 } 
       end
+      @search_for = nil
+    end
 
   end
 

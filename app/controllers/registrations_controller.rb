@@ -1,12 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def edit
-      @rentals = current_user.rentals
+      @rentals = current_user.rentals.order(:start_date, :end_date)
       super
   end
   
   def update
-      @rentals = current_user.rentals
+      @rentals = current_user.rentals.order(:start_date, :end_date)
       super
   end
   

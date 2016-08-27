@@ -11,6 +11,10 @@ class Bike < ActiveRecord::Base
     before_save :validate
     validates_numericality_of :price, :greater_than => 0
     
+    def self.search(search_for)
+        Bike.where("name like ? or description like ?", "%#{search_for}%","%#{search_for}%")
+    end
+    
     # Type of status for a bike
     def self.what_status_is
         [:Available, :Reparing]

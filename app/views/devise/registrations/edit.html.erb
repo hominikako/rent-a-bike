@@ -70,8 +70,8 @@
         <% @rentals.each do |r| %>
             <tr>
                <td><%= r.bike.name %></td>
-              <td><%= r.start_date %></td>
-              <td><%= r.end_date %></td>
+              <td><%= r.start_date.strftime("%d/%m/%Y") %></td>
+              <td><%= r.end_date.strftime("%d/%m/%Y") %></td>
               <td><%= r.price %></td>
             </tr>
          <% end %>

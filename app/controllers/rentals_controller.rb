@@ -1,10 +1,10 @@
 class RentalsController < ApplicationController
     before_action :set_rental, only: [:show, :edit, :update, :destroy]
-    before_action :allow_if_admin
+    before_action :allow_if_admin, only: [:destroy, :index]
     
     
     def index
-        @rentals = Rental.all
+        @rentals = Rental.all.order(:start_date, :end_date)
     end
     
     def destroy
