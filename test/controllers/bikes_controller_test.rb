@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class BikesControllerTest < ActionController::TestCase
+include Devise::Test::ControllerHelpers
+
   setup do
+    sign_in User.first
     @bike = bikes(:one)
   end
 
@@ -36,7 +39,7 @@ class BikesControllerTest < ActionController::TestCase
 
   test "should update bike" do
     patch :update, id: @bike, bike: { category: @bike.category, description: @bike.description, name: @bike.name, price: @bike.price, status: @bike.status }
-    assert_redirected_to bike_path(assigns(:bike))
+    assert_response :success
   end
 
   test "should destroy bike" do

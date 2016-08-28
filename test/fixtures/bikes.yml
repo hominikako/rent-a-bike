@@ -5,7 +5,7 @@ one:
   description: MyText
   price: 1.5
   category: 1
-  status: 1
+  status: 0
 
 two:
   name: MyString
