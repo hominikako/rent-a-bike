@@ -1,5 +1,7 @@
 language: ruby
-ruby:
-  - "2.2.0"
+rvm:
+  - 2.2
+  - jruby
+  - rbx-2
 before_deploy:
   - gem install mime-types -v 2.6.2
