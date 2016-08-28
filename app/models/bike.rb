@@ -11,6 +11,7 @@ class Bike < ActiveRecord::Base
     before_save :validate
     validates_numericality_of :price, :greater_than => 0
     
+    # check if the search value matches either the name or description of the bike
     def self.search(search_for)
         Bike.where("name like ? or description like ?", "%#{search_for}%","%#{search_for}%")
     end

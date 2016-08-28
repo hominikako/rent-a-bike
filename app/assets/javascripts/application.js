@@ -30,3 +30,4 @@
        todayHighlight: true,
        format: 'dd/mm/yyyy' 
    });
+   

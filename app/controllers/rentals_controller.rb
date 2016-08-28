@@ -1,7 +1,6 @@
 class RentalsController < ApplicationController
     before_action :set_rental, only: [:show, :edit, :update, :destroy]
-    before_action :allow_if_admin, only: [:destroy, :index]
-    
+    before_action :allow_if_admin, only: [:destroy, :index] #just admin can use this actions
     
     def index
         @rentals = Rental.all.order(:start_date, :end_date)
@@ -22,6 +21,7 @@ class RentalsController < ApplicationController
         bike = Bike.find(hsh[:bike_id])
         user =  User.find(hsh[:user_id])
 
+        # If the bike or user provided don't exist or the bike is not available
         if (bike.nil? or bike.status != 0 or user.nil?)
             msg = ["Bike not availeble"] if bike.status != 0
             msg = ["User or Bike not found"] if bike.status == 0
@@ -55,11 +55,10 @@ class RentalsController < ApplicationController
   private
   
     
-    # Use callbacks to share common setup or constraints between actions.
     def set_rental
       @rental = Rental.find(params[:id])
     end
-      # Never trust parameters from the scary internet, only allow the white list through.
+    
     def rental_params
       params.require(:rental).permit(:user_id, :bike_id, :start_date, :end_date)
     end

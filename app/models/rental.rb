@@ -9,7 +9,7 @@ class Rental < ActiveRecord::Base
   validates :end_date, presence: true
   validates :price, presence: true
   
-  
+  # validations before adding a new rental
   def validate
     errors.add(:start_date, "cannot be bigger or equal than end_date") if self.end_date <= self.start_date
     errors.add(:start_date, "has to be today or onwards") if self.start_date < Time.now.to_date

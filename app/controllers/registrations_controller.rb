@@ -1,10 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
 
+ #   Overrided method from Devise to obtain the list of rentals for the specific user
   def edit
       @rentals = current_user.rentals.order(:start_date, :end_date)
       super
   end
   
+ #   Overrided method from Devise to obtain the list of rentals for the specific user
   def update
       @rentals = current_user.rentals.order(:start_date, :end_date)
       super
